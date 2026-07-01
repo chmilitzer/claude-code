@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "DecisionRecord",
+  "description": "Protokoll einer Phasen-Entscheidung. Versioniert, auditierbar.",
+  "type": "object",
+  "required": ["deal_id", "phase", "date", "recommendation", "predictions"],
+  "properties": {
+    "deal_id": {"type": "string"},
+    "phase": {"type": "string"},
+    "date": {"type": "string", "description": "YYYY-MM-DD (vom Aufrufer gesetzt)"},
+    "recommendation": {"type": "string", "enum": ["proceed", "proceed-with-conditions", "decline", "hold"]},
+    "conditions": {"type": "array", "items": {"type": "string"}},
+    "resolved": {"type": "array", "items": {"type": "string"}},
+    "escalations": {"type": "array", "items": {"type": "string"}, "description": "needs-human Punkte"},
+    "predictions": {"type": "array", "items": {"$ref": "prediction.schema.json"}},
+    "bull_summary": {"type": "string"},
+    "bear_summary": {"type": "string"},
+    "rounds_used": {"type": "integer"},
+    "anonymization": {"type": "object", "properties": {"mapping_ref": {"type": "string"}, "external_leakage": {"type": "string"}}},
+    "sources": {"type": "array", "items": {"type": "string"}}
+  }
+}

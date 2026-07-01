@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "FactLedger",
+  "description": "Gemeinsames Streit-Ledger einer Debatte. Der Referee fuehrt es rundenweise fort.",
+  "type": "object",
+  "required": ["deal_id", "phase", "round", "claims"],
+  "properties": {
+    "deal_id": {"type": "string"},
+    "phase": {"type": "string"},
+    "round": {"type": "integer", "minimum": 1, "maximum": 6},
+    "converged": {"type": "boolean"},
+    "claims": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "workstream", "statement", "status"],
+        "properties": {
+          "id": {"type": "string", "description": "z. B. C-F1"},
+          "workstream": {"type": "string", "enum": ["financial", "tax", "legal", "commercial"]},
+          "statement": {"type": "string"},
+          "bull_evidence": {"type": "array", "items": {"type": "string"}},
+          "bear_evidence": {"type": "array", "items": {"type": "string"}},
+          "ruling": {"type": "string", "description": "Begruendung des Referee"},
+          "sources": {"type": "array", "items": {"type": "string"}},
+          "status": {"type": "string", "enum": ["contested", "resolved", "needs-human"]},
+          "resolution_basis": {"type": "string", "enum": ["source-proven", "conceded", "unresolvable-without-external", ""], "description": "warum resolved/needs-human"}
+        }
+      }
+    }
+  }
+}

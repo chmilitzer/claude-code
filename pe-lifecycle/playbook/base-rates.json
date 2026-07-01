@@ -1,0 +1,12 @@
+{
+  "_comment": "Seed-Basisraten fuer Kalibrierung. Werden vom pe-reconciler ueber Zyklen aktualisiert. Startwerte sind bewusst konservative Platzhalter, NICHT empirisch validiert.",
+  "version": 1,
+  "calibration": {
+    "series_a_arr_forecast_haircut": 0.0,
+    "milestone_hit_rate_prior": 0.5,
+    "runway_optimism_bias_months": 0
+  },
+  "notes": [
+    "Sobald >= 10 abgeglichene Prognosen vorliegen, ersetzt der reconciler diese Platzhalter durch gemessene Raten."
+  ]
+}

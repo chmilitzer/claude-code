@@ -1,0 +1,18 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Prediction",
+  "description": "Falsifizierbare Prognose zum Entscheidungszeitpunkt. Treibstoff des Lern-Loops.",
+  "type": "object",
+  "required": ["id", "dimension", "claim", "metric", "horizon", "confidence"],
+  "properties": {
+    "id": {"type": "string"},
+    "dimension": {"type": "string", "enum": ["growth", "profitability", "valuation", "milestone"]},
+    "claim": {"type": "string", "description": "menschenlesbar, eindeutig falsifizierbar"},
+    "metric": {"type": "string", "description": "maschinell abgleichbarer Schluessel, z. B. arr, runway_months, fair_value, top3_churn"},
+    "target": {"type": "number", "description": "Zielwert; bei Ja/Nein-Meilensteinen 1/0"},
+    "comparator": {"type": "string", "enum": [">=", "<=", "==", ">", "<"], "default": ">="},
+    "horizon": {"type": "string", "description": "Datum oder Ereignis, z. B. 2028-07 oder closing"},
+    "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+    "attributed_to": {"type": "string", "enum": ["bull", "bear", "consensus"], "description": "wessen These die Prognose traegt"}
+  }
+}
