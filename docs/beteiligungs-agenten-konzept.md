@@ -193,3 +193,42 @@ Schwachstellen, bevor wir auf 7 Phasen skalieren.
 2. Grounding-Quellen: Welche Rechts-/Steuertexte und Data-Room-Zugänge stehen bereit?
 3. Ablageort: projektspezifisch (`.claude/agents/`, teambar via Git) oder persönlich?
 4. Reporting-Format: Wie kommen die Ist-Zahlen der Beteiligungen herein (Datei, M365/SharePoint)?
+
+---
+
+## 10. Präzisierte Entscheidungen (Stand: Diskussion)
+
+Fixiert im gemeinsamen Design-Dialog:
+
+| Thema | Entscheidung | Konsequenz für den Bau |
+|-------|--------------|------------------------|
+| Grounding-Methode | **Web-Retrieval**, nur **Primärquellen** | Whitelist: Fedlex/admin.ch, gesetze-im-internet.de, ESTV, BMF. Fach-Agenten zitieren nur daraus. |
+| Konvergenz | **max_rounds = 6**, Patt → `needs-human` | Kein erzwungener Sieger; offene Punkte eskalieren. |
+| Ablageort | **Persönlich** (`~/.claude/agents/`) | Nicht im Repo; nicht teamweit versioniert. |
+| Reporting-Input | **PDF**, **variiert je Beteiligung** | Toleranter Extraktionsschritt (PDF → KPIs); an Beispiel-PDF kalibrieren. |
+| Vertraulichkeit | Öffentlich frei; Deal-Spezifisches **nur Identitäten maskiert** | Pseudonymisierungs-Schicht: Firmen-/Personennamen → Platzhalter, Zahlen/Fakten bleiben echt. |
+| CH-Steuer | **Bundesebene Standard**, Kanton **nur wo relevant** | `tax-ch` erkennt entscheidungsrelevante Kantonsfragen und fragt gezielt nach. |
+| DD-Pilot-Workstreams | **Financial, Tax, Legal, Commercial** | ESG/Tech vorerst außen vor. |
+| Abgleich-KPIs | Wachstum (Umsatz/ARR), Profitabilität/Runway, Bewertung/Fair-Value, Meilensteine (qualitativ) | Prognose-Schema deckt diese vier Dimensionen ab. |
+
+### Daraus resultierende neue Komponenten
+- **`anonymizer` (Pseudonymisierung):** ersetzt vor externen Aufrufen Namen/Identifikatoren durch stabile Platzhalter (Deal-lokale Mapping-Tabelle, bleibt lokal). Hinweis: keine 100 %-Garantie – Kontext kann Identität teils implizit verraten; bei Bedarf manuelle Freigabe.
+- **`report-extractor` (PDF → KPIs):** liest heterogene Reporting-PDFs, extrahiert die vier KPI-Dimensionen in ein einheitliches Ist-Schema; bei Unsicherheit markiert er Felder als „zu prüfen" statt zu raten.
+- **Quellen-Whitelist:** zentrale Liste erlaubter Primärdomänen, auf die Legal/Tax-Retrieval beschränkt ist.
+
+### Prognose-Schema (an KPIs ausgerichtet)
+```json
+{
+  "id": "p1",
+  "dimension": "growth|profitability|valuation|milestone",
+  "claim": "ARR in 24 Monaten >= 4.0 Mio.",
+  "metric": "arr",
+  "target": 4000000,
+  "horizon": "2028-07",
+  "confidence": 0.6
+}
+```
+
+### Nächster Schritt
+Exemplarischer DD-Durchlauf (Bull/Bear/Referee) an einem anonymisierten Beispiel-Deal, um
+Debattenführung, Fakten-Ledger und Entscheidungs-Record greifbar zu machen – danach Bau des Piloten.
