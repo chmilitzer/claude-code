@@ -52,9 +52,23 @@ eskaliert, nie erzwungen entschieden.
 | `pe-referee` | Neutral: Fakten-Ledger führen, Konvergenz prüfen, Record schreiben |
 | `pe-legal-ch` / `pe-legal-de` | Rechtsfragen CH / DE, nur Primärquellen |
 | `pe-tax-ch` / `pe-tax-de` | Steuerfragen CH / DE, nur Primärquellen |
+| `pe-valuation` | Bewertung/Returns (MOIC/IRR, Wasserfall) für die IC-Phase |
 | `pe-anonymizer` | Pseudonymisiert Identitäten vor externen Aufrufen |
 | `pe-report-extractor` | Extrahiert KPIs aus heterogenen Reporting-PDFs |
 | `pe-reconciler` | Gleicht Prognosen mit Ist ab, erzeugt Lessons (Lern-Loop) |
+
+## Phasen-Commands
+
+| Command | Phase |
+|---------|-------|
+| `/dd-debate <deal-id>` | Due Diligence (Financial, Tax, Legal, Commercial) |
+| `/ic-debate <deal-id>` | Investment Committee / Investment Decision (Go/No-Go, Bewertung, CPs) |
+
+Playbooks je Phase unter `playbook/` (`phase-dd.md`, `phase-ic.md`).
+
+## Betrieb & Backlog
+- `ops/it-aufgaben.md` — offene Infrastruktur-Aufgaben für IT/DevOps (Retrieval-Freischaltung, Persistenz, Datengovernance …)
+- `ops/test-backlog.md` — empfohlene, noch durchzuführende Tests
 
 Konzept-Hintergrund: siehe `docs/beteiligungs-agenten-konzept.md` und
 `docs/dd-modul-beispieldurchlauf.md`.

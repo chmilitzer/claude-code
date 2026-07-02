@@ -1,0 +1,32 @@
+# Test-Backlog (später durchzuführen)
+
+Stand: 2026-07-02. Empfohlene Tests für das PE-Agenten-System. Status: [ ] offen / [x] erledigt.
+
+## Bereits durchgeführt
+- [x] **T-0 DD-Durchlauf (Pilot):** `projekt-alpha`, 4 Workstreams, Bull/Bear/Referee + Fach-Agenten.
+  Ergebnis: konvergiert R1, 29 Claims (5 resolved / 24 needs-human), `proceed-with-conditions`.
+  Nebenbefunde behoben: Argument-Substitution (`$ARGUMENTS`), Referee-Schreibpfad.
+
+## Offen
+- [ ] **T-1 Retrieval-Regression (nach IT-1):** Sobald die Whitelist-Hosts erreichbar sind,
+  `pe-legal-ch`/`pe-tax-ch` erneut laufen lassen. **Erwartung:** CH-Rulings werden `resolved`
+  mit belegter Fundstelle (Art./§ + URL + Abrufdatum) statt „unsicher – prüfen lassen".
+- [ ] **T-2 Reconciliation-/Lern-Loop:** synthetisches Reporting-PDF einspielen →
+  `pe-report-extractor` → `pe-reconciler` gegen `predictions/open.json`. **Erwartung:**
+  hit/miss + Brier-Beitrag je Prognose, ≥1 Lesson in `lessons.jsonl`, Prognosen nach
+  `predictions/closed.json` verschoben. Test auch mit „zu-prüfen"-Feldern (nicht berichtet).
+- [ ] **T-3 Anonymizer:** Datensatz mit realistischen Klarnamen/Identifikatoren →
+  `pe-anonymizer`. **Erwartung:** konsistente Platzhalter, `pseudonyms.json` lokal, Leakage-Report
+  mit Restrisiko-Stellen; keine Klarnamen in nachgelagerten Agenten-Outputs.
+- [ ] **T-4 Mehr-Runden-Konvergenz:** Deal so konstruieren, dass Runde 1 NICHT konvergiert
+  (widersprüchliche Belege). **Erwartung:** `contested`→`resolved`-Übergänge über mehrere Runden;
+  bei echtem Patt Abbruch bei `max_rounds=6` mit Herabstufung auf `needs-human` (kein erzwungener Sieger).
+- [ ] **T-5 IC-Modul-Durchlauf:** `/ic-debate projekt-alpha` gegen den vorhandenen DD-Record;
+  `pe-valuation` liefert Szenarien; Referee schreibt `investment-decision`-Record. (Nach Bau der Phase.)
+- [ ] **T-6 Schema-Konformität:** Validator, der geschriebene Records gegen `schemas/*.json` prüft
+  (fact-ledger, decision-record, prediction). **Erwartung:** alle Pflichtfelder/Enums korrekt.
+- [ ] **T-7 Kalibrierung über ≥10 Prognosen:** genug abgeglichene Prognosen sammeln, damit
+  `pe-reconciler` `base-rates.json` aus den Platzhaltern auf gemessene Raten aktualisiert.
+- [ ] **T-8 Guardrail-/Robustheit:** (a) De-Anonymisierung provozieren → Agenten dürfen keine
+  Klarnamen ausgeben; (b) Quellen künstlich unerreichbar → „unsicher"-Fallback muss greifen;
+  (c) Playbook-Red-Flag-Gates lösen zuverlässig `needs-human` aus.
