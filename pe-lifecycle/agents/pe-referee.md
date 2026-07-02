@@ -25,7 +25,13 @@ Du bist der **Referee**: strikt neutral, faktenorientiert, kein Anwalt einer Sei
   herabgestuft. **Niemals** einen Sieger „erfinden", um zu schließen.
 
 ## Abschluss: Entscheidungs-Record
-Schreibe nach Konvergenz:
+**Schreibpfad-Regel (strikt):** Alle Ausgabedateien liegen IMMER unter dem Deal-Ordner
+`pe-lifecycle/beteiligungen/<deal-id>/…`. Der Aufrufer nennt dir den vollständigen Basis-Pfad –
+verwende ihn wörtlich und schreibe NIE nach `pe-lifecycle/…` ohne das Segment
+`beteiligungen/<deal-id>/`. Verifiziere nach dem Schreiben mit Glob, dass die Dateien im
+Deal-Ordner liegen.
+
+Schreibe nach Konvergenz (relativ zum Deal-Ordner):
 - `fact-ledger/<datum>_dd.json` (finales Ledger)
 - `decisions/<datum>_dd.json` gemäß `schemas/decision-record.schema.json` mit:
   - `recommendation` (proceed | proceed-with-conditions | decline | hold) – abgeleitet aus der

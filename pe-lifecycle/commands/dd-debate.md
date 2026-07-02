@@ -3,17 +3,17 @@ description: Fuehrt den DD-Debattenlauf (Bull/Bear/Referee, max. 6 Runden bis Ko
 argument-hint: <deal-id>
 ---
 
-Du orchestrierst eine strukturierte Due-Diligence-Debatte für den Deal **$1**.
+Du orchestrierst eine strukturierte Due-Diligence-Debatte für den Deal **$ARGUMENTS**.
 Arbeite deterministisch und faktenbasiert. Erzwinge nie ein Ergebnis.
 
 ## Vorbereitung
 1. Bestimme das heutige Datum (aus dem Kontext/`date`), du gibst es an alle Sub-Agenten weiter –
    diese generieren selbst keine Daten.
-2. Lies `pe-lifecycle/beteiligungen/$1/00_profile.json` und die Data-Room-Dokumente.
+2. Lies `pe-lifecycle/beteiligungen/$ARGUMENTS/00_profile.json` und die Data-Room-Dokumente.
 3. Lies `pe-lifecycle/playbook/phase-dd.md` (Prüfraster + Red-Flag-Gates), `base-rates.json`
    und relevante `lessons.jsonl`-Einträge – als Kontext für die Debatte.
 4. **Pseudonymisierung:** Rufe `pe-anonymizer` auf, damit die Debatte nur mit maskierten
-   Identitäten arbeitet. Klarnamen bleiben in `beteiligungen/$1/pseudonyms.json` (lokal).
+   Identitäten arbeitet. Klarnamen bleiben in `beteiligungen/$ARGUMENTS/pseudonyms.json` (lokal).
 
 ## Debattenschleife (je Workstream: financial, tax, legal, commercial)
 Für jeden Workstream, Runde n = 1..6:
@@ -28,11 +28,11 @@ Für jeden Workstream, Runde n = 1..6:
    erreicht ist (verbleibende `contested` → `needs-human`).
 
 ## Abschluss
-1. Lass `pe-referee` das finale Fakten-Ledger nach `beteiligungen/$1/fact-ledger/<datum>_dd.json`
-   und den Entscheidungs-Record nach `beteiligungen/$1/decisions/<datum>_dd.json` schreiben
+1. Lass `pe-referee` das finale Fakten-Ledger nach `beteiligungen/$ARGUMENTS/fact-ledger/<datum>_dd.json`
+   und den Entscheidungs-Record nach `beteiligungen/$ARGUMENTS/decisions/<datum>_dd.json` schreiben
    (Schema: `pe-lifecycle/schemas/decision-record.schema.json`), inkl. falsifizierbarer
    **predictions** über die vier KPI-Dimensionen; Prognosen zusätzlich nach
-   `beteiligungen/$1/predictions/open.json`.
+   `beteiligungen/$ARGUMENTS/predictions/open.json`.
 2. Fasse dem Nutzer zusammen: Empfehlung, Auflagen, die wichtigsten `needs-human`-Eskalationen und
    die gesetzten Prognosen. Mach die offenen Rechts-/Steuerpunkte als prüfungsbedürftig kenntlich.
 
