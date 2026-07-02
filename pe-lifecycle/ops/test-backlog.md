@@ -11,8 +11,9 @@ Stand: 2026-07-02. Empfohlene Tests für das PE-Agenten-System. Status: [ ] offe
 - [ ] **T-1 Retrieval-Regression (nach IT-1):** Sobald die Whitelist-Hosts erreichbar sind,
   `pe-legal-ch`/`pe-tax-ch` erneut laufen lassen. **Erwartung:** CH-Rulings werden `resolved`
   mit belegter Fundstelle (Art./§ + URL + Abrufdatum) statt „unsicher – prüfen lassen".
-- [x] **T-2 Reconciliation-/Lern-Loop:** getestet an REALEM bildbasiertem Deck (Muuvr Investor Summit,
-  57 Seiten, nur Grafik). `pe-report-extractor` via Render+Vision → saubere Ist-Zahlen, 5 Widersprüche
+- [x] **T-2 Reconciliation-/Lern-Loop:** getestet an einem REALEN, bildbasierten Investor-Deck
+  (57 Seiten, nur Grafik; Deal-Daten bleiben im gitignored Deal-Ordner). `pe-report-extractor` via
+  Render+Vision → saubere Ist-Zahlen, 5 Widersprüche
   als „zu-prüfen" markiert. `pe-reconciler`: 2 hit / 2 miss / 1 undeterminable (zu-prüfen korrekt nicht
   gescort), Brier 0.228, 2 Lessons, `closed.json` befüllt, 5 pending. Findings behoben: (a) PDF-Tooling
   fehlte → IT-8 + lokal `pymupdf` installiert; (b) `lessons.jsonl` leakte vertrauliche Deal-Daten →
