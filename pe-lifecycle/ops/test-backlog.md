@@ -41,3 +41,6 @@ Stand: 2026-07-02. Empfohlene Tests für das PE-Agenten-System. Status: [ ] offe
   Ursprung: `/signing-debate projekt-alpha` gegen den IC-Record.
   **Erwartung:** CP-Status-Tracking (erfüllt/teilweise/offen), SPA-/Escrow-Prüfung via Legal-Fach-Agenten,
   `signing-closing`-Record mit Reife-Votum + Closing-CPs. (Benötigt SPA-Entwurf im Data Room.)
+- [ ] **T-11 Exit-Durchlauf:** `/exit-debate <deal-id>` gegen den juengsten Record + Reporting.
+  **Erwartung:** pe-valuation Exit-Szenarien (jetzt verkaufen vs. halten), Bull/Bear zu Timing/Kanal,
+  `exit`-Record mit Votum + Kanal + realisierter MOIC-Prognose; nach Exit finaler Reconciler-Lauf.
