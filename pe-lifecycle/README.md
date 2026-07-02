@@ -64,8 +64,9 @@ eskaliert, nie erzwungen entschieden.
 | `/dd-debate <deal-id>` | Due Diligence (Financial, Tax, Legal, Commercial) |
 | `/ic-debate <deal-id>` | Investment Committee / Investment Decision (Go/No-Go, Bewertung, CPs) |
 | `/signing-debate <deal-id>` | Signing / Closing (CP-Tracking, SPA-/Vertragswerk-Prüfung) |
+| `/monitor <deal-id> [pdf]` | Monitoring / Value Creation (PDF→KPI, Reconciliation/Lern-Loop, Action-Review) |
 
-Playbooks je Phase unter `playbook/` (`phase-dd.md`, `phase-ic.md`, `phase-signing.md`).
+Playbooks je Phase unter `playbook/` (`phase-dd.md`, `phase-ic.md`, `phase-signing.md`, `phase-monitoring.md`).
 
 ## Betrieb & Backlog
 - `ops/it-aufgaben.md` — offene Infrastruktur-Aufgaben für IT/DevOps (Retrieval-Freischaltung, Persistenz, Datengovernance …)

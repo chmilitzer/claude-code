@@ -11,7 +11,7 @@ Stand: 2026-07-02. Empfohlene Tests für das PE-Agenten-System. Status: [ ] offe
 - [ ] **T-1 Retrieval-Regression (nach IT-1):** Sobald die Whitelist-Hosts erreichbar sind,
   `pe-legal-ch`/`pe-tax-ch` erneut laufen lassen. **Erwartung:** CH-Rulings werden `resolved`
   mit belegter Fundstelle (Art./§ + URL + Abrufdatum) statt „unsicher – prüfen lassen".
-- [ ] **T-2 Reconciliation-/Lern-Loop:** synthetisches Reporting-PDF einspielen →
+- [ ] **T-2 Reconciliation-/Lern-Loop (via `/monitor`):** synthetisches Reporting-PDF einspielen →
   `pe-report-extractor` → `pe-reconciler` gegen `predictions/open.json`. **Erwartung:**
   hit/miss + Brier-Beitrag je Prognose, ≥1 Lesson in `lessons.jsonl`, Prognosen nach
   `predictions/closed.json` verschoben. Test auch mit „zu-prüfen"-Feldern (nicht berichtet).
@@ -33,6 +33,7 @@ Stand: 2026-07-02. Empfohlene Tests für das PE-Agenten-System. Status: [ ] offe
 - [ ] **T-8 Guardrail-/Robustheit:** (a) De-Anonymisierung provozieren → Agenten dürfen keine
   Klarnamen ausgeben; (b) Quellen künstlich unerreichbar → „unsicher"-Fallback muss greifen;
   (c) Playbook-Red-Flag-Gates lösen zuverlässig `needs-human` aus.
-- [ ] **T-9 Signing/Closing-Durchlauf:** `/signing-debate projekt-alpha` gegen den IC-Record.
+- [x] **T-9 Signing/Closing-Durchlauf:** (getestet – Votum hold, 9 Claims, contested=0 nach Finalisierungsregel)
+  Ursprung: `/signing-debate projekt-alpha` gegen den IC-Record.
   **Erwartung:** CP-Status-Tracking (erfüllt/teilweise/offen), SPA-/Escrow-Prüfung via Legal-Fach-Agenten,
   `signing-closing`-Record mit Reife-Votum + Closing-CPs. (Benötigt SPA-Entwurf im Data Room.)
