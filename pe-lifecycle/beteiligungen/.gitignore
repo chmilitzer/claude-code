@@ -1,0 +1,5 @@
+# Vertrauliche Deal-Daten NICHT versionieren.
+# Struktur/Vorlage bleibt erhalten, echte Deal-Inhalte werden ignoriert.
+*/
+!_TEMPLATE/
+!.gitignore
