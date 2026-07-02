@@ -21,8 +21,11 @@ Stand: 2026-07-02. Empfohlene Tests für das PE-Agenten-System. Status: [ ] offe
 - [ ] **T-4 Mehr-Runden-Konvergenz:** Deal so konstruieren, dass Runde 1 NICHT konvergiert
   (widersprüchliche Belege). **Erwartung:** `contested`→`resolved`-Übergänge über mehrere Runden;
   bei echtem Patt Abbruch bei `max_rounds=6` mit Herabstufung auf `needs-human` (kein erzwungener Sieger).
-- [ ] **T-5 IC-Modul-Durchlauf:** `/ic-debate projekt-alpha` gegen den vorhandenen DD-Record;
-  `pe-valuation` liefert Szenarien; Referee schreibt `investment-decision`-Record. (Nach Bau der Phase.)
+- [x] **T-5 IC-Modul-Durchlauf:** Smoke-Test (1 Runde, manuell orchestriert) an `projekt-alpha`.
+  Ergebnis: Votum `hold` (Downside-MOIC-Gate auf unbekannten Seed-Pref-Cap eskaliert, nicht per CP
+  weggestimmt), 12 Claims, 8 CPs, 6 IC-Prognosen. Referee-Schreibpfad-Fix bestätigt (Records im
+  Deal-Ordner). Finding: Referee hinterließ `contested`-Claims bei Finalisierung → Regel ergänzt
+  (contested→needs-human beim Schreiben). Offen: voller Mehr-Runden-Lauf via `/ic-debate` (siehe T-4).
 - [ ] **T-6 Schema-Konformität:** Validator, der geschriebene Records gegen `schemas/*.json` prüft
   (fact-ledger, decision-record, prediction). **Erwartung:** alle Pflichtfelder/Enums korrekt.
 - [ ] **T-7 Kalibrierung über ≥10 Prognosen:** genug abgeglichene Prognosen sammeln, damit
