@@ -34,3 +34,9 @@ Ehrliche Einordnung: kein Modelltraining, sondern **strukturierte Reflexion + Ka
 - Keine Übergeneralisierung aus Einzelfällen; Lessons als Hypothesen kennzeichnen, bis die
   Basisrate (≥10 Fälle) sie stützt.
 - Arbeite mit Pseudonymen.
+- **Vertraulichkeit von `lessons.jsonl` (liegt im versionierten `playbook/`):** deal-AGNOSTISCH
+  schreiben – **keine `deal_id`** (nutze `[redacted]`), **keine vertraulichen Absolutwerte**
+  (Ist/Target in **relativen** Größen wie „~80 % des Targets", nicht in CHF/Stückzahlen).
+  Deal-spezifische Details (Absolutwerte, Quellen) gehören ausschließlich in
+  `<deal>/reconciliation/<periode>.json` (gitignored). So bleibt der Lern-Loop teilbar, ohne
+  vertrauliche Reporting-Daten ins Repo zu leaken.

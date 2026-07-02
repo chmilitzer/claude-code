@@ -11,10 +11,13 @@ Stand: 2026-07-02. Empfohlene Tests für das PE-Agenten-System. Status: [ ] offe
 - [ ] **T-1 Retrieval-Regression (nach IT-1):** Sobald die Whitelist-Hosts erreichbar sind,
   `pe-legal-ch`/`pe-tax-ch` erneut laufen lassen. **Erwartung:** CH-Rulings werden `resolved`
   mit belegter Fundstelle (Art./§ + URL + Abrufdatum) statt „unsicher – prüfen lassen".
-- [ ] **T-2 Reconciliation-/Lern-Loop (via `/monitor`):** synthetisches Reporting-PDF einspielen →
-  `pe-report-extractor` → `pe-reconciler` gegen `predictions/open.json`. **Erwartung:**
-  hit/miss + Brier-Beitrag je Prognose, ≥1 Lesson in `lessons.jsonl`, Prognosen nach
-  `predictions/closed.json` verschoben. Test auch mit „zu-prüfen"-Feldern (nicht berichtet).
+- [x] **T-2 Reconciliation-/Lern-Loop:** getestet an REALEM bildbasiertem Deck (Muuvr Investor Summit,
+  57 Seiten, nur Grafik). `pe-report-extractor` via Render+Vision → saubere Ist-Zahlen, 5 Widersprüche
+  als „zu-prüfen" markiert. `pe-reconciler`: 2 hit / 2 miss / 1 undeterminable (zu-prüfen korrekt nicht
+  gescort), Brier 0.228, 2 Lessons, `closed.json` befüllt, 5 pending. Findings behoben: (a) PDF-Tooling
+  fehlte → IT-8 + lokal `pymupdf` installiert; (b) `lessons.jsonl` leakte vertrauliche Deal-Daten →
+  Reconciler-Regel „deal-agnostisch/relativ" + `lessons.jsonl` anonymisiert.
+  Offen: echter Mehr-Perioden-Abgleich (2025-Ist gegen die 5 pending Management-Targets).
 - [ ] **T-3 Anonymizer:** Datensatz mit realistischen Klarnamen/Identifikatoren →
   `pe-anonymizer`. **Erwartung:** konsistente Platzhalter, `pseudonyms.json` lokal, Leakage-Report
   mit Restrisiko-Stellen; keine Klarnamen in nachgelagerten Agenten-Outputs.
